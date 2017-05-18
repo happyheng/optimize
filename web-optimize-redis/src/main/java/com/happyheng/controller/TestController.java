@@ -30,7 +30,7 @@ public class TestController {
     @RequestMapping("/testSelectFromDb")
     public List<Article> testSelectFromDb() throws Exception {
 
-        return articleDao.getArticleListFromdb();
+        return articleDao.getFirstPageArticleListFromdb();
     }
 
     @RequestMapping("/testSelectFromCache")
@@ -45,7 +45,7 @@ public class TestController {
         } else {
 
             // 如果数据为空,那么从db中取出来,然后序列化后写入到cache中,并设置1分钟的过期时间
-            List<Article> articleList = articleDao.getArticleListFromdb();
+            List<Article> articleList = articleDao.getFirstPageArticleListFromdb();
             String serializeArticleListStr = JSON.toJSONString(articleList);
             jedis.set(KEY_CACHE_ARTICLE_LIST, serializeArticleListStr);
             jedis.expire(KEY_CACHE_ARTICLE_LIST, 60);

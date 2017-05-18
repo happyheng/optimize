@@ -16,7 +16,7 @@ import java.util.List;
 public class ArticleDao {
 
 
-    public List<Article> getArticleListFromdb() throws Exception{
+    public List<Article> getFirstPageArticleListFromdb() throws Exception{
 
         String sql = "SELECT * FROM article ORDER BY create_time DESC LIMIT 0, 10";
 
